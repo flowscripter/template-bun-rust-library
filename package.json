@@ -1,0 +1,16 @@
+{
+  "name": "@flowscripter/template-bun-rust-library",
+  "module": "index.ts",
+  "type": "module",
+  "version": "0.0.0",
+  "ffiLibBaseUri": "./target/release",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

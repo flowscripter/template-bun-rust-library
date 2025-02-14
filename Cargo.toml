@@ -1,0 +1,15 @@
+[package]
+name = "flowscripter_template_bun_rust_library"
+version ="1.0.15"
+edition = "2021"
+description = "Project template for a Rust library with Bun FFI bindings."
+homepage = "https://github.com/flowscripter"
+license = "MIT"
+repository = "https://github.com/flowscripter/template-bun-rust-library"
+exclude = [".github/"]
+
+[lib]
+crate-type = ["cdylib","lib"]
+
+[dependencies]
+flowscripter_template_rust_library = "1.1.7"
