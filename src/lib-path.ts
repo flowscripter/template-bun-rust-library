@@ -31,9 +31,13 @@ export async function getLibPath(libName: string) {
 
     await mkdir(installedLibFolder, { recursive: true });
 
-    const result = await fetch(remotePath);
+    try {
+      const result = await fetch(remotePath);
 
-    await Bun.write(installedLibPath, result);
+      await Bun.write(installedLibPath, result);
+    } catch (e) {
+      console.error(`Failed to download ${remotePath} to ${installedLibPath}: ${e}`);
+    }
 
     return installedLibPath;
 }
