@@ -9,18 +9,26 @@ export async function getLibPath(libName: string) {
   const installedLibFolder = path.join(os.homedir(), ".flowscripter", "lib");
   const installedLibPath = path.join(installedLibFolder, fullLibName);
   const installedLibFile = Bun.file(installedLibPath);
+
   const exists = await installedLibFile.exists();
+
+  console.debug(`${installedLibPath} exists: ${exists}`);
 
   if (exists) {
     return installedLibPath;
   }
 
+  console.debug(`packageJson.ffiLibBaseUri: ${packageJson.ffiLibBaseUri}`);
+
   // release build location
   if (packageJson.ffiLibBaseUri === "./target/release") {
-    // handle windows paths by not actually using ffiLibBaseUri
+
+    // handle windows paths by reconstructing ffiLibBaseUri value
     const builtLibPath = path.join(".", "target", "release", fullLibName);
     const builtLibFile = Bun.file(builtLibPath);
     const exists = await builtLibFile.exists();
+
+    console.debug(`${builtLibPath} exists: ${exists}`);
 
     if (exists) {
       return builtLibPath;
