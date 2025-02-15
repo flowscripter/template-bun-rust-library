@@ -17,7 +17,8 @@ export async function getLibPath(libName: string) {
 
     // release build location
     if (packageJson.ffiLibBaseUri === "./target/release") {
-      const builtLibPath = path.join(packageJson.ffiLibBaseUri, fullLibName);
+      // handle windows paths by not actually using ffiLibBaseUri
+      const builtLibPath = path.join(".", "target", "release", fullLibName);
       const builtLibFile = Bun.file(builtLibPath);
       const exists = await builtLibFile.exists();
 
