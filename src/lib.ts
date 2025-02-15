@@ -1,5 +1,5 @@
 import { dlopen, FFIType } from "bun:ffi";
-import { getLibPath } from './lib-path.ts';
+import { getLibPath } from "./lib-path.ts";
 
 const {
   symbols: {
