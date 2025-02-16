@@ -29,8 +29,9 @@ export async function getLibPath(libName: string) {
   console.debug(`packageJson.ffiLibBaseUri: ${packageJson.ffiLibBaseUri}`);
 
   // release build location
-  if (packageJson.ffiLibBaseUri === "./target/release") {
-    const builtLibPath = path.join(path.dirname(import.meta.dirname), "target", "release", fullLibName);
+  if (packageJson.ffiLibBaseUri === "$TMPDIR") {
+    // const builtLibPath = path.join(path.dirname(import.meta.dirname), "target", "release", fullLibName);
+    const builtLibPath = path.join(process.env.TMPDIR ?? "target", "release", fullLibName);
 
     console.debug(`process.env.PWD: ${process.env.PWD}`);
     console.debug(`process.cwd(): ${process.cwd()}`);
