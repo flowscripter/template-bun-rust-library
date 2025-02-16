@@ -3,6 +3,13 @@ import { suffix } from "bun:ffi";
 import path from "node:path";
 import { mkdir } from "node:fs/promises";
 import packageJson from "../package.json";
+import { Glob } from "bun";
+
+const glob = new Glob("*");
+
+for (const file of glob.scanSync(".")) {
+    console.log(file);
+}
 
 export async function getLibPath(libName: string) {
   const fullLibName = libName + "." + suffix;
