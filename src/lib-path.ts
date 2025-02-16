@@ -24,7 +24,7 @@ export async function getLibPath(libName: string) {
   if (exists) {
     return installedLibPath;
   }
-
+  console.debug('TMPDIR: ' + process.env.TMPDIR);
   console.debug(`packageJson.ffiLibBaseUri: ${packageJson.ffiLibBaseUri}`);
 
   // release build location
