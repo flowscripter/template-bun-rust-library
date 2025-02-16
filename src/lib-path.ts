@@ -5,12 +5,6 @@ import { mkdir } from "node:fs/promises";
 import packageJson from "../package.json";
 import { Glob } from "bun";
 
-const glob = new Glob("*");
-
-for (const file of glob.scanSync(".")) {
-    console.log(file);
-}
-
 export async function getLibPath(libName: string) {
   const fullLibName = libName + "." + suffix;
   const installedLibFolder = path.join(os.homedir(), ".flowscripter", "lib");
@@ -25,6 +19,13 @@ export async function getLibPath(libName: string) {
     return installedLibPath;
   }
   console.debug('TMPDIR: ' + process.env.TMPDIR);
+
+  const glob = new Glob("*");
+
+  for (const file of glob.scanSync(process.env.TMPDIR)) {
+      console.log(file);
+  }
+
   console.debug(`packageJson.ffiLibBaseUri: ${packageJson.ffiLibBaseUri}`);
 
   // release build location
