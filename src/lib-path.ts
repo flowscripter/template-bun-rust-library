@@ -21,14 +21,10 @@ export async function getLibPath(libName: string) {
   console.debug(`packageJson.ffiLibBaseUri: ${packageJson.ffiLibBaseUri}`);
 
   // release build location
-  if (packageJson.ffiLibBaseUri === "$TMPDIR") {
-    const builtLibPath = path.join(
-      process.env.TMPDIR ?? "tmp",
-      "release",
-      fullLibName,
-    );
+  if (packageJson.ffiLibBaseUri === "./target/release") {
+    const builtLibPath = "./target/release/" + fullLibName;
 
-    console.debug(`builtLibPat1h: ${builtLibPath}`);
+    console.debug(`builtLibPath: ${builtLibPath}`);
 
     const builtLibFile = Bun.file(builtLibPath);
     const exists = await builtLibFile.exists();
