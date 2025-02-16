@@ -30,7 +30,7 @@ export async function getLibPath(libName: string) {
     }
 
     // hack for Windows paths (potential issue in Bun)
-    if (modulePath.startsWith("\\") && modulePath[2] === ":") {
+    if (modulePath.startsWith("/") && modulePath[2] === ":") {
       modulePath = modulePath.substring(1);
     }
     console.debug(`modulePath: ${modulePath}`);
