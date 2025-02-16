@@ -29,6 +29,11 @@ export async function getLibPath(libName: string) {
       modulePath = modulePath.substring(7);
     }
 
+    // hack for Windows paths (potential issue in Bun)
+    if (modulePath.startsWith("\\") && modulePath[2] === ":") {
+      modulePath = modulePath.substring(1);
+    }
+
     const builtLibPath = path.join(modulePath, "..", "target", "release", fullLibName);
     const builtLibFile = Bun.file(builtLibPath);
     const exists = await builtLibFile.exists();
