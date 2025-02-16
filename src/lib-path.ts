@@ -22,20 +22,11 @@ export async function getLibPath(libName: string) {
 
   // release build location
   if (packageJson.ffiLibBaseUri === "$TMPDIR") {
-    // handle windows paths by reconstructing ffiLibBaseUri value
-    // let modulePath = path.dirname(import.meta.url);
-
-    // if (modulePath.startsWith("file://")) {
-    //   modulePath = modulePath.substring(7);
-    // }
-
-    // hack for Windows paths (potential issue in Bun)
-    // if (modulePath.startsWith("/") && modulePath[2] === ":") {
-    //   modulePath = modulePath.substring(1);
-    // }
-    // console.debug(`modulePath: ${modulePath}`);
-
-    const builtLibPath = path.join(process.env.TMPDIR ?? "tmp", "release", fullLibName);
+    const builtLibPath = path.join(
+      process.env.TMPDIR ?? "tmp",
+      "release",
+      fullLibName,
+    );
 
     console.debug(`builtLibPath: ${builtLibPath}`);
 
