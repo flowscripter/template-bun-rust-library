@@ -22,7 +22,7 @@ export async function getLibPath(libName: string) {
 
   // release build location
   if (packageJson.ffiLibBaseUri === "./target/release") {
-    const builtLibPath = "./target/release/" + fullLibName;
+    const builtLibPath = import.meta.dirname + "/target/release/" + fullLibName;
 
     console.debug(`builtLibPath: ${builtLibPath}`);
 
