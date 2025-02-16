@@ -28,7 +28,7 @@ export async function getLibPath(libName: string) {
       fullLibName,
     );
 
-    console.debug(`builtLibPath: ${builtLibPath}`);
+    console.debug(`builtLibPat1h: ${builtLibPath}`);
 
     const builtLibFile = Bun.file(builtLibPath);
     const exists = await builtLibFile.exists();
