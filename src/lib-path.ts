@@ -23,7 +23,13 @@ export async function getLibPath(libName: string) {
   // release build location
   if (packageJson.ffiLibBaseUri === "./target/release") {
     // handle windows paths by reconstructing ffiLibBaseUri value
-    const builtLibPath = path.join(".", "target", "release", fullLibName);
+    let modulePath = path.dirname(import.meta.url);
+
+    if (modulePath.startsWith("file://")) {
+      modulePath = modulePath.substring(7);
+    }
+
+    const builtLibPath = path.join(modulePath, "..", "target", "release", fullLibName);
     const builtLibFile = Bun.file(builtLibPath);
     const exists = await builtLibFile.exists();
 
@@ -32,6 +38,8 @@ export async function getLibPath(libName: string) {
     if (exists) {
       return builtLibPath;
     }
+
+    throw new Error(`Could not find ${builtLibPath}`);
   }
 
   // release download location
