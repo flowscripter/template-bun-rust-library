@@ -21,21 +21,24 @@ export async function getLibPath(libName: string) {
   console.debug(`packageJson.ffiLibBaseUri: ${packageJson.ffiLibBaseUri}`);
 
   // release build location
-  if (packageJson.ffiLibBaseUri === "./target/release") {
+  if (packageJson.ffiLibBaseUri === "/tmp/target") {
     // handle windows paths by reconstructing ffiLibBaseUri value
-    let modulePath = path.dirname(import.meta.url);
+    // let modulePath = path.dirname(import.meta.url);
 
-    if (modulePath.startsWith("file://")) {
-      modulePath = modulePath.substring(7);
-    }
+    // if (modulePath.startsWith("file://")) {
+    //   modulePath = modulePath.substring(7);
+    // }
 
     // hack for Windows paths (potential issue in Bun)
-    if (modulePath.startsWith("/") && modulePath[2] === ":") {
-      modulePath = modulePath.substring(1);
-    }
-    console.debug(`modulePath: ${modulePath}`);
+    // if (modulePath.startsWith("/") && modulePath[2] === ":") {
+    //   modulePath = modulePath.substring(1);
+    // }
+    // console.debug(`modulePath: ${modulePath}`);
 
-    const builtLibPath = path.join(modulePath, "..", "target", "release", fullLibName);
+    const builtLibPath = path.join('tmp', "target", "release", fullLibName);
+
+    console.debug(`builtLibPath: ${builtLibPath}`);
+
     const builtLibFile = Bun.file(builtLibPath);
     const exists = await builtLibFile.exists();
 
