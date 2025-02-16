@@ -33,6 +33,7 @@ export async function getLibPath(libName: string) {
     if (modulePath.startsWith("\\") && modulePath[2] === ":") {
       modulePath = modulePath.substring(1);
     }
+    console.debug(`modulePath: ${modulePath}`);
 
     const builtLibPath = path.join(modulePath, "..", "target", "release", fullLibName);
     const builtLibFile = Bun.file(builtLibPath);
