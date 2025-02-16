@@ -24,6 +24,9 @@ export async function getLibPath(libName: string) {
   if (packageJson.ffiLibBaseUri === "./target/release") {
     const builtLibPath = path.join(import.meta.dirname, "target", "release", fullLibName);
 
+    console.debug(`process.env.PWD: ${process.env.PWD}`);
+    console.debug(`process.cwd(): ${process.cwd()}`);
+
     console.debug(`builtLibPath: ${builtLibPath}`);
 
     const builtLibFile = Bun.file(builtLibPath);
