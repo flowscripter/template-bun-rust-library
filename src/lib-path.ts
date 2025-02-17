@@ -3,12 +3,11 @@ import { suffix } from "bun:ffi";
 import path from "node:path";
 import { mkdir } from "node:fs/promises";
 import packageJson from "../package.json";
-import { Glob } from "bun";
 
 export async function getLibPath(libName: string) {
   let fullLibName = libName + "." + suffix;
 
-  if (suffix !== "dll") { 
+  if (suffix !== "dll") {
     fullLibName = "lib" + fullLibName;
   }
 
@@ -24,20 +23,11 @@ export async function getLibPath(libName: string) {
     return installedLibPath;
   }
 
-  const glob = new Glob("*");
-
-  for (const file of glob.scanSync('.')) {
-      console.log(file);
-  }
-
   console.debug(`packageJson.ffiLibBaseUri: ${packageJson.ffiLibBaseUri}`);
 
-  // release build location
+  // look for release build location
   if (packageJson.ffiLibBaseUri === "target/release") {
     const builtLibPath = path.join("target", "release", fullLibName);
-
-    console.debug(`process.env.PWD: ${process.env.PWD}`);
-    console.debug(`process.cwd(): ${process.cwd()}`);
 
     console.debug(`builtLibPath: ${builtLibPath}`);
 
@@ -53,8 +43,10 @@ export async function getLibPath(libName: string) {
     throw new Error(`Could not find ${builtLibPath}`);
   }
 
-  // release download location
+  // look for release download location
   const remotePath = path.join(packageJson.ffiLibBaseUri, fullLibName);
+
+  console.debug(`remotePath: ${remotePath}`);
 
   await mkdir(installedLibFolder, { recursive: true });
 
