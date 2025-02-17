@@ -6,7 +6,12 @@ import packageJson from "../package.json";
 import { Glob } from "bun";
 
 export async function getLibPath(libName: string) {
-  const fullLibName = libName + "." + suffix;
+  let fullLibName = libName + "." + suffix;
+
+  if (suffix !== "dll") { 
+    fullLibName = "lib" + fullLibName;
+  }
+
   const installedLibFolder = path.join(os.homedir(), ".flowscripter", "lib");
   const installedLibPath = path.join(installedLibFolder, fullLibName);
   const installedLibFile = Bun.file(installedLibPath);
@@ -18,20 +23,18 @@ export async function getLibPath(libName: string) {
   if (exists) {
     return installedLibPath;
   }
-  console.debug('TMPDIR: ' + process.env.TMPDIR);
 
   const glob = new Glob("*");
 
-  for (const file of glob.scanSync(process.env.TMPDIR)) {
+  for (const file of glob.scanSync('.')) {
       console.log(file);
   }
 
   console.debug(`packageJson.ffiLibBaseUri: ${packageJson.ffiLibBaseUri}`);
 
   // release build location
-  if (packageJson.ffiLibBaseUri === "$TMPDIR") {
-    // const builtLibPath = path.join(path.dirname(import.meta.dirname), "target", "release", fullLibName);
-    const builtLibPath = path.join(process.env.TMPDIR ?? "target", "release", fullLibName);
+  if (packageJson.ffiLibBaseUri === "target/release") {
+    const builtLibPath = path.join("target", "release", fullLibName);
 
     console.debug(`process.env.PWD: ${process.env.PWD}`);
     console.debug(`process.cwd(): ${process.cwd()}`);

@@ -6,7 +6,7 @@ const {
     add,
   },
 } = dlopen(
-  await getLibPath("libflowscripter_template_bun_rust_library"),
+  await getLibPath("flowscripter_template_bun_rust_library"),
   {
     add: {
       args: [

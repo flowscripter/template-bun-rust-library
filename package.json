@@ -3,7 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "version": "0.0.0",
-  "ffiLibBaseUri": "$TMPDIR",
+  "ffiLibBaseUri": "target/release",
   "publishConfig": {
     "access": "public"
   },
