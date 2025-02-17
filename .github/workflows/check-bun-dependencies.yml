@@ -2,7 +2,7 @@ name: check-bun-dependencies
 on:
   workflow_dispatch:
   schedule:
-    - cron:  '0 0 * * *'
+    - cron: "0 0 * * *"
 jobs:
   call-check-bun-dependencies:
     uses: flowscripter/.github/.github/workflows/check-bun-dependencies.yml@v1
