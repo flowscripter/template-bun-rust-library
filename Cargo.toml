@@ -12,4 +12,4 @@ exclude = [".github/"]
 crate-type = ["cdylib","lib"]
 
 [dependencies]
-flowscripter_template_rust_library = "1.1.7"
+flowscripter_template_rust_library = "1.1.10"
