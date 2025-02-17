@@ -11,11 +11,26 @@ export async function getLibPath(libName: string) {
     fullLibName = "lib" + fullLibName;
   }
 
+  // look for release build location in preference
+  const builtLibPath = path.join("target", "release", fullLibName);
+
+  console.debug(`builtLibPath: ${builtLibPath}`);
+
+  const builtLibFile = Bun.file(builtLibPath);
+  let exists = await builtLibFile.exists();
+
+  console.debug(`${builtLibPath} exists: ${exists}`);
+
+  if (exists) {
+    return builtLibPath;
+  }
+
+  // look for release installed location
   const installedLibFolder = path.join(os.homedir(), ".flowscripter", "lib");
   const installedLibPath = path.join(installedLibFolder, fullLibName);
   const installedLibFile = Bun.file(installedLibPath);
 
-  const exists = await installedLibFile.exists();
+  exists = await installedLibFile.exists();
 
   console.debug(`${installedLibPath} exists: ${exists}`);
 
@@ -24,24 +39,6 @@ export async function getLibPath(libName: string) {
   }
 
   console.debug(`packageJson.ffiLibBaseUri: ${packageJson.ffiLibBaseUri}`);
-
-  // look for release build location
-  if (packageJson.ffiLibBaseUri === "target/release") {
-    const builtLibPath = path.join("target", "release", fullLibName);
-
-    console.debug(`builtLibPath: ${builtLibPath}`);
-
-    const builtLibFile = Bun.file(builtLibPath);
-    const exists = await builtLibFile.exists();
-
-    console.debug(`${builtLibPath} exists: ${exists}`);
-
-    if (exists) {
-      return builtLibPath;
-    }
-
-    throw new Error(`Could not find ${builtLibPath}`);
-  }
 
   // look for release download location
   const remotePath = path.join(packageJson.ffiLibBaseUri, fullLibName);
