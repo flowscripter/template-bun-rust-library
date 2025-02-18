@@ -1,6 +1,6 @@
 [package]
 name = "flowscripter_template_bun_rust_library"
-version ="1.0.1"
+version ="1.0.2"
 edition = "2021"
 description = "Project template for a Rust library with Bun FFI bindings."
 homepage = "https://github.com/flowscripter"
