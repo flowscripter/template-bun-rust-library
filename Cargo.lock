@@ -4,7 +4,7 @@ version = 4
 
 [[package]]
 name = "flowscripter_template_bun_rust_library"
-version = "1.0.1"
+version = "1.0.2"
 dependencies = [
  "flowscripter_template_rust_library",
 ]
