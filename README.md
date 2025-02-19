@@ -50,7 +50,7 @@ Lint:
 
 Generate HTML API Documentation:
 
-`deno doc --html --name=template-bun-library index.ts`
+`deno doc --html --name=template-bun-rust-library index.ts`
 
 ## Documentation
 
@@ -67,7 +67,7 @@ classDiagram
 
 Link to auto-generated API docs:
 
-[API Documentation](https://flowscripter.github.io/template-bun-library/index.html)
+[API Documentation](https://flowscripter.github.io/template-bun-rust-library/index.html)
 
 ## License
 
