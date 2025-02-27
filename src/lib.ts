@@ -1,12 +1,16 @@
 import { dlopen, FFIType } from "bun:ffi";
 import { getLibPath } from "./lib-path.ts";
 
+const libPath = await getLibPath("flowscripter_template_bun_rust_library");
+
+console.debug(`dlopen libPath: ${libPath}`);
+
 const {
   symbols: {
     add,
   },
 } = dlopen(
-  await getLibPath("flowscripter_template_bun_rust_library"),
+  libPath,
   {
     add: {
       args: [
