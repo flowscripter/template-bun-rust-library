@@ -29,7 +29,9 @@ world();
 
 ## Development
 
-Build:
+Install dependencies:
+
+`bun install`
 
 Test:
 
