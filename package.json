@@ -2,8 +2,8 @@
   "name": "@flowscripter/template-bun-rust-library",
   "module": "index.ts",
   "type": "module",
-  "version": "1.0.22",
-  "ffiLibBaseUri": "https://github.com/flowscripter/template-bun-rust-library/releases/download/v1.0.22",
+  "version": "1.0.23",
+  "ffiLibBaseUri": "https://github.com/flowscripter/template-bun-rust-library/releases/download/v1.0.23",
   "publishConfig": {
     "access": "public"
   },
