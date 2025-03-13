@@ -1,5 +1,16 @@
 {
   "name": "@flowscripter/template-bun-rust-library",
+  "description": "Project template for a Rust library with Bun FFI bindings",
+  "repository": "@flowscripter/template-bun-rust-library",
+  "license": "MIT",
+  "keywords": [
+    "bun",
+    "example",
+    "library",
+    "template",
+    "rust",
+    "ffi"
+  ],
   "module": "index.ts",
   "type": "module",
   "version": "1.0.24",
