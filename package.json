@@ -1,7 +1,11 @@
 {
   "name": "@flowscripter/template-bun-rust-library",
   "description": "Project template for a Rust library with Bun FFI bindings",
-  "repository": "@flowscripter/template-bun-rust-library",
+  "homepage": "https://github.com/flowscripter/template-bun-rust-library#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flowscripter/template-bun-rust-library.git"
+  },
   "license": "MIT",
   "keywords": [
     "bun",
