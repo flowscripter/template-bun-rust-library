@@ -17,8 +17,8 @@
   ],
   "module": "index.ts",
   "type": "module",
-  "version": "1.0.25",
-  "ffiLibBaseUri": "https://github.com/flowscripter/template-bun-rust-library/releases/download/v1.0.25",
+  "version": "1.0.26",
+  "ffiLibBaseUri": "https://github.com/flowscripter/template-bun-rust-library/releases/download/v1.0.26",
   "publishConfig": {
     "access": "public"
   },
