@@ -11,7 +11,7 @@ export async function getLibPath(libName: string) {
     fullLibName = "lib" + fullLibName;
   }
 
-  // look for release build location in preference
+  // look in release build location
   const builtLibPath = path.join("target", "release", fullLibName);
 
   console.debug(`builtLibPath: ${builtLibPath}`);
@@ -25,7 +25,7 @@ export async function getLibPath(libName: string) {
     return builtLibPath;
   }
 
-  // look for release installed location
+  // look in release installed location
   const installedLibFolder = path.join(os.homedir(), ".flowscripter", "lib");
   const installedLibPath = path.join(installedLibFolder, fullLibName);
   const installedLibFile = Bun.file(installedLibPath);
@@ -40,7 +40,7 @@ export async function getLibPath(libName: string) {
 
   console.debug(`packageJson.ffiLibBaseUri: ${packageJson.ffiLibBaseUri}`);
 
-  // look for release download location
+  // look in release download location
   const remotePath = path.join(packageJson.ffiLibBaseUri, fullLibName);
 
   console.debug(`remotePath: ${remotePath}`);
