@@ -41,20 +41,17 @@ Test:
 
 `cargo build --release && bun test`
 
-**NOTE**: The following tasks use Deno as it excels at these and Bun does not
-currently provide such functionality:
-
 Format:
 
-`deno fmt`
+`bunx oxfmt`
 
 Lint:
 
-`cargo fmt && deno lint index.ts src/ tests/`
+`cargo fmt && bunx oxlint index.ts src/ tests/`
 
 Generate HTML API Documentation:
 
-`deno doc --html --name=template-bun-rust-library index.ts`
+`bunx typedoc --readme none index.ts`
 
 ## Documentation
 

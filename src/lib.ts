@@ -6,21 +6,13 @@ const libPath = await getLibPath("flowscripter_template_bun_rust_library");
 console.debug(`dlopen libPath: ${libPath}`);
 
 const {
-  symbols: {
-    add,
+  symbols: { add },
+} = dlopen(libPath, {
+  add: {
+    args: [FFIType.i32, FFIType.i32],
+    returns: FFIType.i32,
   },
-} = dlopen(
-  libPath,
-  {
-    add: {
-      args: [
-        FFIType.i32,
-        FFIType.i32,
-      ],
-      returns: FFIType.i32,
-    },
-  },
-);
+});
 
 /**
  * Adds 2 and 2 and logs the result as "World 4"

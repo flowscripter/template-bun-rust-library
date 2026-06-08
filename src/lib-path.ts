@@ -52,9 +52,7 @@ export async function getLibPath(libName: string) {
 
     await Bun.write(installedLibPath, result);
   } catch (e) {
-    console.error(
-      `Failed to download ${remotePath} to ${installedLibPath}: ${e}`,
-    );
+    console.error(`Failed to download ${remotePath} to ${installedLibPath}: ${e}`);
   }
 
   return installedLibPath;
