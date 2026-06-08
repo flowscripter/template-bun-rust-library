@@ -177,3 +177,4 @@ dist
 docs/
 target/
 /.releaserc
+.claude

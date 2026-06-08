@@ -1,24 +1,23 @@
 {
   "name": "@flowscripter/template-bun-rust-library",
+  "version": "1.0.26",
   "description": "Project template for a Rust library with Bun FFI bindings",
+  "keywords": [
+    "bun",
+    "example",
+    "ffi",
+    "library",
+    "rust",
+    "template"
+  ],
   "homepage": "https://github.com/flowscripter/template-bun-rust-library#readme",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/flowscripter/template-bun-rust-library.git"
   },
-  "license": "MIT",
-  "keywords": [
-    "bun",
-    "example",
-    "library",
-    "template",
-    "rust",
-    "ffi"
-  ],
-  "module": "index.ts",
   "type": "module",
-  "version": "1.0.26",
-  "ffiLibBaseUri": "https://github.com/flowscripter/template-bun-rust-library/releases/download/v1.0.26",
+  "module": "index.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -27,5 +26,6 @@
   },
   "peerDependencies": {
     "typescript": "^6.0.3"
-  }
+  },
+  "ffiLibBaseUri": "https://github.com/flowscripter/template-bun-rust-library/releases/download/v1.0.26"
 }
