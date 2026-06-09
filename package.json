@@ -29,5 +29,11 @@
   "peerDependencies": {
     "typescript": "^6.0.3"
   },
-  "ffiLibBaseUri": "https://github.com/flowscripter/template-bun-rust-library/releases/download/v1.1.3"
+  "ffiLibBaseUri": "https://github.com/flowscripter/template-bun-rust-library/releases/download/v1.1.3",
+  "typedocOptions": {
+    "readme": "none",
+    "exclude": [
+      "tests/**"
+    ]
+  }
 }
