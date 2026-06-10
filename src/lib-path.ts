@@ -41,7 +41,10 @@ export async function getLibPath(libName: string) {
   console.debug(`packageJson.ffiLibBaseUri: ${packageJson.ffiLibBaseUri}`);
 
   // look in release download location
-  const remotePath = path.join(packageJson.ffiLibBaseUri, fullLibName);
+  const base = packageJson.ffiLibBaseUri.endsWith("/")
+    ? packageJson.ffiLibBaseUri
+    : packageJson.ffiLibBaseUri + "/";
+  const remotePath = new URL(fullLibName, base).href;
 
   console.debug(`remotePath: ${remotePath}`);
 
