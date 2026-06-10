@@ -4,12 +4,24 @@ import path from "node:path";
 import { mkdir } from "node:fs/promises";
 import packageJson from "../package.json";
 
-export async function getLibPath(libName: string) {
-  let fullLibName = libName + "." + suffix;
+export function buildLocalLibName(libName: string, libSuffix: string): string {
+  const base = `${libName}.${libSuffix}`;
+  return libSuffix === "dll" ? base : `lib${base}`;
+}
 
-  if (suffix !== "dll") {
-    fullLibName = "lib" + fullLibName;
-  }
+export function buildRemoteLibName(libName: string, libSuffix: string, arch: string): string {
+  if (libSuffix === "so") return `${arch}.${libSuffix}`;
+  if (libSuffix === "dll") return `${libName}.${arch}.${libSuffix}`;
+  return buildLocalLibName(libName, libSuffix);
+}
+
+export function buildRemoteUrl(baseUri: string, remoteLibName: string): string {
+  const base = baseUri.endsWith("/") ? baseUri : baseUri + "/";
+  return new URL(remoteLibName, base).href;
+}
+
+export async function getLibPath(libName: string) {
+  const fullLibName = buildLocalLibName(libName, suffix);
 
   // look in release build location
   const builtLibPath = path.join("target", "release", fullLibName);
@@ -40,25 +52,8 @@ export async function getLibPath(libName: string) {
 
   console.debug(`packageJson.ffiLibBaseUri: ${packageJson.ffiLibBaseUri}`);
 
-  // look in release download location
-  // release asset naming differs from the local dlopen name:
-  //   Linux:   {arch}.so       (e.g. x64.so, arm64.so)
-  //   macOS:   lib{name}.dylib (unchanged)
-  //   Windows: {name}.{arch}.dll
-  const arch = process.arch;
-  let remoteLibName: string;
-  if (suffix === "so") {
-    remoteLibName = `${arch}.${suffix}`;
-  } else if (suffix === "dll") {
-    remoteLibName = `${libName}.${arch}.${suffix}`;
-  } else {
-    remoteLibName = fullLibName;
-  }
-
-  const base = packageJson.ffiLibBaseUri.endsWith("/")
-    ? packageJson.ffiLibBaseUri
-    : packageJson.ffiLibBaseUri + "/";
-  const remotePath = new URL(remoteLibName, base).href;
+  const remoteLibName = buildRemoteLibName(libName, suffix, process.arch);
+  const remotePath = buildRemoteUrl(packageJson.ffiLibBaseUri, remoteLibName);
 
   console.debug(`remotePath: ${remotePath}`);
 
