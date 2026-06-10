@@ -41,10 +41,24 @@ export async function getLibPath(libName: string) {
   console.debug(`packageJson.ffiLibBaseUri: ${packageJson.ffiLibBaseUri}`);
 
   // look in release download location
+  // release asset naming differs from the local dlopen name:
+  //   Linux:   {arch}.so       (e.g. x64.so, arm64.so)
+  //   macOS:   lib{name}.dylib (unchanged)
+  //   Windows: {name}.{arch}.dll
+  const arch = process.arch;
+  let remoteLibName: string;
+  if (suffix === "so") {
+    remoteLibName = `${arch}.${suffix}`;
+  } else if (suffix === "dll") {
+    remoteLibName = `${libName}.${arch}.${suffix}`;
+  } else {
+    remoteLibName = fullLibName;
+  }
+
   const base = packageJson.ffiLibBaseUri.endsWith("/")
     ? packageJson.ffiLibBaseUri
     : packageJson.ffiLibBaseUri + "/";
-  const remotePath = new URL(fullLibName, base).href;
+  const remotePath = new URL(remoteLibName, base).href;
 
   console.debug(`remotePath: ${remotePath}`);
 
