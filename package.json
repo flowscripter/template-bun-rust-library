@@ -1,6 +1,6 @@
 {
   "name": "@flowscripter/template-bun-rust-library",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "description": "Project template for a Rust library with Bun FFI bindings",
   "keywords": [
     "bun",
@@ -29,7 +29,7 @@
   "peerDependencies": {
     "typescript": "^6.0.3"
   },
-  "ffiLibBaseUri": "https://github.com/flowscripter/template-bun-rust-library/releases/download/v1.1.16",
+  "ffiLibBaseUri": "https://github.com/flowscripter/template-bun-rust-library/releases/download/v1.1.17",
   "typedocOptions": {
     "readme": "none",
     "exclude": [
