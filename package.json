@@ -42,11 +42,11 @@
   },
   "devDependencies": {
     "@types/bun": "^1.3.14",
-    "oxfmt": "0.57.0",
-    "oxlint": "1.72.0"
+    "oxfmt": "0.58.0",
+    "oxlint": "1.73.0"
   },
   "peerDependencies": {
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   },
   "ffiLibBaseUri": "https://github.com/flowscripter/template-bun-rust-library/releases/download/v1.2.6",
   "typedocOptions": {
