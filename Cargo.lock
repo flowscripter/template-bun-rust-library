@@ -11,6 +11,6 @@ dependencies = [
 
 [[package]]
 name = "flowscripter_template_rust_library"
-version = "1.1.28"
+version = "1.1.29"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0b98321547eee30099b8eaee201f3515a8d441d676a306a1012f782c63e9f56f"
+checksum = "96a13fc4f66f415464e651883e22020c9537bd737ec891e92752f28ddd7d0a3b"
