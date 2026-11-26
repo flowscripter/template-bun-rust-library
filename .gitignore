@@ -177,4 +177,6 @@ dist
 docs/
 target/
 /.releaserc
-.claude
+.claude/*
+!.claude/CLAUDE.md
+!.claude/skills/
